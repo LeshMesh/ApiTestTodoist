@@ -1,2 +1,3 @@
-# ApiTestTodoist
-Graduation work p.2 QA.GURU
+# Дипломный проект по автоматизации Api тестирования сайта [Todoist](http://todoist.com/ru/)
+Реализован во время обучения в Школе инженеров по автоматизации тестирования [qa.guru](http://qa.guru/)
+
