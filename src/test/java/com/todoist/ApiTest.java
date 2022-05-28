@@ -93,6 +93,6 @@ public class ApiTest extends TestBase {
                 .when()
                 .delete("/projects/" + id)
                 .then()
-                .spec(response200);
+                .spec(response204);
     }
 }
