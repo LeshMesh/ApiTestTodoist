@@ -1,64 +1,98 @@
 package com.todoist;
 
-import io.restassured.RestAssured;
-import org.junit.jupiter.api.BeforeAll;
+import com.todoist.models.Credentials;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static com.todoist.AllureListener.withCustomTemplates;
+import static com.todoist.spec.Spec.*;
 import static io.restassured.RestAssured.given;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInClasspath;
+import static org.hamcrest.Matchers.is;
 
-public class ApiTest {
+public class ApiTest extends TestBase {
 
-    @BeforeAll
-    static void beforeAll() {
-        RestAssured.filters(withCustomTemplates());
+    @Test
+    @DisplayName("Получить все проекты пользователя")
+    void getAllProjectsUserTest() {
+        given()
+                .spec(requestGet)
+                .when()
+                .get("/projects")
+                .then()
+                .spec(response200)
+                .log().body();
     }
 
     @Test
+    @DisplayName("Получить конкретный проект пользователя")
     void getProjectsUserTest() {
         given()
+                .spec(requestGet)
                 .when()
-                .header("Authorization",  "Bearer 874af02b7ff11f095e02860c597c248e8acdda46")
-                .get("https://api.todoist.com/rest/v1/projects")
+                .get("/projects/2292187993")
                 .then()
-                .statusCode(200)
-                .log().all();
+                .spec(response200)
+                .log().body()
+                .body(matchesJsonSchemaInClasspath("schemas/jsonSchemaProjectResponse.json"));
     }
 
     @Test
-    void getProjectsTest() {
-        given()
-                .header("Authorization",  "Bearer 874af02b7ff11f095e02860c597c248e8acdda46")
-                .when()
-                .get("https://api.todoist.com/rest/v1/projects/2190808620")
-                .then()
-                .statusCode(200)
-                .log().all();
-    }
-
-    @Test
+    @DisplayName("Создать новый проект")
     void createNewProjectsTest() {
-        String nameProject = "{\"name\": \"Shopping List2\"}";
+        Credentials credentials = new Credentials();
+        credentials.setName("Shopping List");
         given()
-                .header("Authorization",  "Bearer 874af02b7ff11f095e02860c597c248e8acdda46")
-                .header("X-Request-Id", "$(uuidgen)")
-                .contentType("application/json")
-                .body(nameProject)
+                .spec(requestCreate)
+                .body(credentials)
                 .when()
-                .post("https://api.todoist.com/rest/v1/projects")
+                .post("/projects")
                 .then()
-                .statusCode(200)
-                .log().all();
+                .spec(response200)
+                .log().body()
+                .body(matchesJsonSchemaInClasspath("schemas/jsonSchemaProjectResponse.json"))
+                .body("name", is("Shopping List"));
     }
 
     @Test
-    void deleteProjectsTest() {
+    @DisplayName("Создать новую задачу")
+    void createNewTaskTest() {
+        Credentials credentials = new Credentials();
+        credentials.setContent("Buy Milk");
+        credentials.setProject_id("2292187993");
+
         given()
-                .header("Authorization",  "Bearer 874af02b7ff11f095e02860c597c248e8acdda46")
+                .spec(requestCreate)
+                .body(credentials)
                 .when()
-                .delete("https://api.todoist.com/rest/v1/projects/2292302598")
+                .post("/tasks")
                 .then()
-                .statusCode(204)
-                .log().all();
+                .spec(response200)
+                .log().body()
+                .body(matchesJsonSchemaInClasspath("schemas/jsonSchemaTaskResponse.json"))
+                .body("content", is("Buy Milk"));
+    }
+
+    @Test
+    @DisplayName("Удалить проект")
+    void deleteProject() {
+        Credentials credentials = new Credentials();
+        credentials.setName("Delete Project");
+
+        String id =
+                given()
+                        .spec(requestCreate)
+                        .body(credentials)
+                        .when()
+                        .post("/projects")
+                        .then()
+                        .spec(response200)
+                        .extract().jsonPath().getString("id");
+
+        given()
+                .spec(requestGet)
+                .when()
+                .delete("/projects/" + id)
+                .then()
+                .spec(response200);
     }
 }

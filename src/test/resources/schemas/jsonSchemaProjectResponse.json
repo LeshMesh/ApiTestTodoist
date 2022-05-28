@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "http://example.com/example.json",
+  "type": "object",
+  "default": {},
+  "title": "Root Schema",
+  "required": [
+    "id",
+    "order",
+    "color",
+    "name",
+    "comment_count",
+    "shared",
+    "favorite",
+    "sync_id",
+    "url"
+  ],
+  "properties": {
+    "id": {
+      "type": "integer",
+      "default": 0,
+      "title": "The id Schema",
+      "examples": [
+        2292187993
+      ]
+    },
+    "order": {
+      "type": "integer",
+      "default": 0,
+      "title": "The order Schema",
+      "examples": [
+        1
+      ]
+    },
+    "color": {
+      "type": "integer",
+      "default": 0,
+      "title": "The color Schema",
+      "examples": [
+        47
+      ]
+    },
+    "name": {
+      "type": "string",
+      "default": "",
+      "title": "The name Schema",
+      "examples": [
+        "Test Project"
+      ]
+    },
+    "comment_count": {
+      "type": "integer",
+      "default": 0,
+      "title": "The comment_count Schema",
+      "examples": [
+        0
+      ]
+    },
+    "shared": {
+      "type": "boolean",
+      "default": false,
+      "title": "The shared Schema",
+      "examples": [
+        false
+      ]
+    },
+    "favorite": {
+      "type": "boolean",
+      "default": false,
+      "title": "The favorite Schema",
+      "examples": [
+        false
+      ]
+    },
+    "sync_id": {
+      "type": "integer",
+      "default": 0,
+      "title": "The sync_id Schema",
+      "examples": [
+        0
+      ]
+    },
+    "url": {
+      "type": "string",
+      "default": "",
+      "title": "The url Schema",
+      "examples": [
+        "https://todoist.com/showProject?id=2292187993"
+      ]
+    }
+  },
+  "examples": [{
+    "id": 2292187993,
+    "order": 1,
+    "color": 47,
+    "name": "Test Project",
+    "comment_count": 0,
+    "shared": false,
+    "favorite": false,
+    "sync_id": 0,
+    "url": "https://todoist.com/showProject?id=2292187993"
+  }]
+}

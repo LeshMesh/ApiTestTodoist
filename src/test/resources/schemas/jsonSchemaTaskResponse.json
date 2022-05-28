@@ -1,0 +1,154 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "http://example.com/example.json",
+  "type": "object",
+  "default": {},
+  "title": "Root Schema",
+  "required": [
+    "id",
+    "assigner",
+    "project_id",
+    "section_id",
+    "order",
+    "content",
+    "description",
+    "completed",
+    "label_ids",
+    "priority",
+    "comment_count",
+    "creator",
+    "created",
+    "url"
+  ],
+  "properties": {
+    "id": {
+      "type": "integer",
+      "default": 0,
+      "title": "The id Schema",
+      "examples": [
+        5883616460
+      ]
+    },
+    "assigner": {
+      "type": "integer",
+      "default": 0,
+      "title": "The assigner Schema",
+      "examples": [
+        0
+      ]
+    },
+    "project_id": {
+      "type": "integer",
+      "default": 0,
+      "title": "The project_id Schema",
+      "examples": [
+        2292187993
+      ]
+    },
+    "section_id": {
+      "type": "integer",
+      "default": 0,
+      "title": "The section_id Schema",
+      "examples": [
+        0
+      ]
+    },
+    "order": {
+      "type": "integer",
+      "default": 0,
+      "title": "The order Schema",
+      "examples": [
+        3
+      ]
+    },
+    "content": {
+      "type": "string",
+      "default": "",
+      "title": "The content Schema",
+      "examples": [
+        "Buy Milk"
+      ]
+    },
+    "description": {
+      "type": "string",
+      "default": "",
+      "title": "The description Schema",
+      "examples": [
+        ""
+      ]
+    },
+    "completed": {
+      "type": "boolean",
+      "default": false,
+      "title": "The completed Schema",
+      "examples": [
+        false
+      ]
+    },
+    "label_ids": {
+      "type": "array",
+      "default": [],
+      "title": "The label_ids Schema",
+      "items": {},
+      "examples": [
+        []
+      ]
+    },
+    "priority": {
+      "type": "integer",
+      "default": 0,
+      "title": "The priority Schema",
+      "examples": [
+        1
+      ]
+    },
+    "comment_count": {
+      "type": "integer",
+      "default": 0,
+      "title": "The comment_count Schema",
+      "examples": [
+        0
+      ]
+    },
+    "creator": {
+      "type": "integer",
+      "default": 0,
+      "title": "The creator Schema",
+      "examples": [
+        39690486
+      ]
+    },
+    "created": {
+      "type": "string",
+      "default": "",
+      "title": "The created Schema",
+      "examples": [
+        "2022-05-28T14:11:11.299802Z"
+      ]
+    },
+    "url": {
+      "type": "string",
+      "default": "",
+      "title": "The url Schema",
+      "examples": [
+        "https://todoist.com/showTask?id=5883616460"
+      ]
+    }
+  },
+  "examples": [{
+    "id": 5883616460,
+    "assigner": 0,
+    "project_id": 2292187993,
+    "section_id": 0,
+    "order": 3,
+    "content": "Buy Milk",
+    "description": "",
+    "completed": false,
+    "label_ids": [],
+    "priority": 1,
+    "comment_count": 0,
+    "creator": 39690486,
+    "created": "2022-05-28T14:11:11.299802Z",
+    "url": "https://todoist.com/showTask?id=5883616460"
+  }]
+}
