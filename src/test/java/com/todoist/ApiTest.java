@@ -4,8 +4,8 @@ import io.restassured.RestAssured;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import static com.todoist.AllureListener.withCustomTemplates;
 import static io.restassured.RestAssured.given;
-import static listners.CustomAllureListener.withCustomTemplates;
 
 public class ApiTest {
 
