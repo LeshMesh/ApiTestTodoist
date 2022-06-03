@@ -1,10 +1,13 @@
 package com.todoist.models;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Credentials {
 
     private String name;
     private String content;
-    private String project_id;
+    @JsonProperty("project_id")
+    private String projectId;
 
     public String getName() {
         return name;
@@ -22,11 +25,11 @@ public class Credentials {
         this.content = content;
     }
 
-    public String getProject_id() {
-        return project_id;
+    public String getProjectId() {
+        return projectId;
     }
 
-    public void setProject_id(String project_id) {
-        this.project_id = project_id;
+    public void setProject_id(String projectId) {
+        this.projectId = projectId;
     }
 }
